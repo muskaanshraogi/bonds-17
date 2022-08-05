@@ -1,27 +1,26 @@
- /* DROP TABLE IF EXISTS dogs;
+   /* DROP TABLE IF EXISTS dogs;
   
 CREATE TABLE dogs (
 id INT NOT NULL,
 name VARCHAR(250) NOT NULL,
 age INT NOT NULL
-);
- */
+);*/
 DROP TABLE IF EXISTS Book;
   
-CREATE TABLE Book (
-id INT PRIMARY KEY,
+CREATE TABLE BOOK (
+Id INT PRIMARY KEY,
 BookName VARCHAR(250) NOT NULL UNIQUE
 );
  
 
 
-DROP TABLE IF EXISTS User;
+DROP TABLE IF EXISTS USER;
 
-CREATE TABLE User(
+CREATE TABLE USER(
 Id INT PRIMARY KEY,
-NAME VARCHAR(250) NOT NULL UNIQUE,
-Email VARCHAR(250) NOT NULL UNIQUE,
-Role VARCHAR(250) NOT NULL UNIQUE
+Name VARCHAR(100) NOT NULL UNIQUE,
+Email VARCHAR(100) NOT NULL UNIQUE,
+Role VARCHAR(100) NOT NULL UNIQUE
 );
  
  DROP TABLE IF EXISTS BookUser;
@@ -29,43 +28,43 @@ Role VARCHAR(250) NOT NULL UNIQUE
 CREATE TABLE BookUser (
  
  BookId INT,
- UserId Int,
- FOREIGN KEY (BookId) REFERENCES Book(id),
- FOREIGN KEY (UserId) REFERENCES User(id)
+ UserId INT,
+ FOREIGN KEY (BookId) REFERENCES Book(Id),
+ FOREIGN KEY (UserId) REFERENCES USER(Id)
 );
 
-  DROP Table if Exists Security;
-  create Table Security(
-    Id int primary key,
-    ISIN varchar(12),
-    CUSIP varchar(9),
-    Issuer varchar(100),
-    MaturityDate date,
-    Coupon varchar(100),
-    Type varchar (50),
-    FaceValue float,
-    Status boolean default false
+  DROP TABLE IF EXISTS SECURITY;
+  CREATE TABLE SECURITY(
+    Id INT PRIMARY KEY,
+    Isin VARCHAR(12),
+    Cusip VARCHAR(9),
+    Issuer VARCHAR(100),
+    MaturityDate DATE,
+    Coupon FLOAT,
+    TYPE VARCHAR (50),
+    FaceValue FLOAT,
+    STATUS BOOLEAN DEFAULT FALSE
   );
   
-  DROP Table If Exists CounterParty;
-  create Table CounterParty(
-    id int primary key,
-    Name varchar(100) NOT NULL 
+  DROP TABLE IF EXISTS CounterParty;
+  CREATE TABLE CounterParty(
+    Id INT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL 
   );
   
-DROP table if exists Trade;
+DROP TABLE IF EXISTS Trade;
   CREATE TABLE TRADE(
   ID INT PRIMARY KEY,
     BookID INT,
     CounterPartyId INT,
     SecurityId INT,
     Quantity INT,
-    Status boolean default false,
-    Price float ,
-    Buy_Sell varchar(4) ,
-    TradeDate Date,
-    SettlementDate Date  ,
-    FOREIGN KEY (BookId) REFERENCES Book(id),
-    FOREIGN KEY (CounterPartyId) REFERENCES CounterParty(id),
-    FOREIGN KEY (SecurityId) REFERENCES Security(id)
+    Status BOOLEAN DEFAULT FALSE,
+    Price FLOAT ,
+    Buy_Sell VARCHAR(4) ,
+    TradeDate DATE,
+    SettlementDate DATE  ,
+    FOREIGN KEY (BookId) REFERENCES Book(Id),
+    FOREIGN KEY (CounterPartyId) REFERENCES CounterParty(Id),
+    FOREIGN KEY (SecurityId) REFERENCES SECURITY(Id)
   );
