@@ -12,16 +12,23 @@ CREATE TABLE BOOK (
 Id INT PRIMARY KEY,
 BookName VARCHAR(250) NOT NULL UNIQUE
 );
- 
+/*
+ we can look after login testing 
+Drop table if EXISTS Login
+create table login (
+	username
 
-
+);
+*/
 DROP TABLE IF EXISTS UserD;
 
 CREATE TABLE UserD(
 Id INT PRIMARY KEY,
 Name VARCHAR(100) NOT NULL ,
 Email VARCHAR(100) NOT NULL UNIQUE,
-Role VARCHAR(100) NOT NULL 
+Role VARCHAR(100) NOT NULL,
+-- we need to remove later
+Password varchar (100) not null
 );
  
 

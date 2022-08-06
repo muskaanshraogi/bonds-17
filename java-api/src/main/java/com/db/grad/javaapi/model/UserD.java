@@ -11,15 +11,17 @@ public class UserD {
 	private String Name;
 	private String Email;
 	private String Role;
+	private String Password;
 	
 	public UserD() {
 		// TODO Auto-generated constructor stub
 	}
-	public UserD(int Id, String Name, String Email, String Role) {
+	public UserD(int Id, String Name, String Email, String Role,String Password) {
 		this.Id=Id;
 		this.Name=Name;
 		this.Email=Email;
 		this.Role=Role;
+		this.Password=Password;
 	}
 	
 	@Id
@@ -51,6 +53,13 @@ public class UserD {
 	}
 	public String getRole() {
 		return this.Role;
+	}
+	@Column(name="Password")
+	public void setPassword(String Password) {
+		this.Password=Password;
+	}
+	public String getPassword() {
+		return this.Password;
 	}
 	
 }
