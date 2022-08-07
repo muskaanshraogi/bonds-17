@@ -2,15 +2,15 @@ package com.db.grad.javaapi.model;
 import javax.persistence.*;
 
 @Entity
-@Table (name="CounterParty")
-public class CounterParty {
+@Table (name="Counterparty")
+public class Counterparty {
 	@Id
 	private int Id;
 	private String Name;
-	public CounterParty() {
+	public Counterparty() {
 		// TODO Auto-generated constructor stub
 	}
-	public CounterParty (int Id, String Name) {
+	public Counterparty (int Id, String Name) {
 		this.Id=Id;
 		this.Name=Name;
 	}

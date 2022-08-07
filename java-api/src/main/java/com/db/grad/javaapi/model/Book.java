@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class Book {
 	@Id
 	private int Id;
-	private String BookName;
+	private String Bookname;
 	
 	public Book() {
 		// TODO Auto-generated constructor stub
@@ -18,7 +18,7 @@ public class Book {
 	
 	public  Book(int id, String name) {
 		this.Id=id;
-		this.BookName=name;
+		this.Bookname=name;
 	}
 	@Id
 	public int getId() {
@@ -28,12 +28,12 @@ public class Book {
 	public void setId(int id) {
 		this.Id=id;
 	}
-	@Column (name="BookName", nullable=false)
-	public String getBookName() {
-		return this.BookName;
+	@Column (name="Bookname", nullable=false)
+	public String getBookname() {
+		return this.Bookname;
 	}
-	public void setBookName(String name) {
-		this.BookName=name;
+	public void setBookname(String name) {
+		this.Bookname=name;
 	}
 	
 

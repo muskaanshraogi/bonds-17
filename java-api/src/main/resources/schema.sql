@@ -2,16 +2,17 @@ DROP TABLE IF EXISTS dogs;
   
 CREATE TABLE dogs (
 id INT NOT NULL,
-name VARCHAR(250) NOT NULL,
+NAME VARCHAR(250) NOT NULL,
 age INT NOT NULL
 );
 
 DROP TABLE IF EXISTS Book;
   
-CREATE TABLE BOOK (
+CREATE TABLE Book (
 Id INT PRIMARY KEY,
-BookName VARCHAR(250) NOT NULL UNIQUE
+Bookname VARCHAR(250) NOT NULL UNIQUE
 );
+
 /*
  we can look after login testing 
 Drop table if EXISTS Login
@@ -20,26 +21,26 @@ create table login (
 
 );
 */
-DROP TABLE IF EXISTS UserD;
+DROP TABLE IF EXISTS USER;
 
-CREATE TABLE UserD(
+CREATE TABLE USER(
 Id INT PRIMARY KEY,
-Name VARCHAR(100) NOT NULL ,
+NAME VARCHAR(100) NOT NULL ,
 Email VARCHAR(100) NOT NULL UNIQUE,
-Role VARCHAR(100) NOT NULL,
+ROLE VARCHAR(100) NOT NULL,
 -- we need to remove later
-Password varchar (100) not null
+PASSWORD VARCHAR (100) NOT NULL
 );
  
 
- DROP TABLE IF EXISTS BookUser;
+ DROP TABLE IF EXISTS Bookuser;
   
-CREATE TABLE BookUser (
+CREATE TABLE Bookuser (
  
- BookId INT,
- UserId INT,
- FOREIGN KEY (BookId) REFERENCES Book(Id),
- FOREIGN KEY (UserId) REFERENCES UserD(Id)
+ Bookid INT,
+ Userid INT,
+ FOREIGN KEY (Bookid) REFERENCES Book(Id),
+ FOREIGN KEY (Userid) REFERENCES USER(Id)
 );
 
   DROP TABLE IF EXISTS SECURITY;
@@ -47,34 +48,34 @@ CREATE TABLE BookUser (
     Id INT PRIMARY KEY,
     Isin VARCHAR(12),
     Cusip VARCHAR(9),
-    Issuer VARCHAR(100),
-    MaturityDate DATE,
+    ISSUER VARCHAR(100),
+    Maturitydate DATE,
     Coupon FLOAT,
     TYPE VARCHAR (50),
-    FaceValue FLOAT,
+    Facevalue FLOAT,
     STATUS BOOLEAN DEFAULT FALSE
   );
   
-  DROP TABLE IF EXISTS CounterParty;
-  CREATE TABLE CounterParty(
+  DROP TABLE IF EXISTS Counterparty;
+  CREATE TABLE Counterparty(
     Id INT PRIMARY KEY,
-    Name VARCHAR(100) NOT NULL 
+    NAME VARCHAR(100) NOT NULL 
   );
   
 DROP TABLE IF EXISTS Trade;
   CREATE TABLE TRADE(
-  ID INT PRIMARY KEY,
-    BookID INT,
-    CounterPartyId INT,
-    SecurityId INT,
+  Id INT PRIMARY KEY,
+    Bookid INT,
+    Counterpartyid INT,
+    Securityid INT,
     Quantity INT,
-    Status BOOLEAN DEFAULT FALSE,
+    STATUS BOOLEAN DEFAULT FALSE,
     Price FLOAT ,
-    Buy_Sell VARCHAR(4) ,
-    TradeDate DATE,
-    SettlementDate DATE  ,
-    FOREIGN KEY (BookId) REFERENCES Book(Id),
-    FOREIGN KEY (CounterPartyId) REFERENCES CounterParty(Id),
-    FOREIGN KEY (SecurityId) REFERENCES SECURITY(Id)
+    Buy_sell VARCHAR(4) ,
+    Tradedate DATE,
+    Settlementdate DATE  ,
+    FOREIGN KEY (Bookid) REFERENCES Book(Id),
+    FOREIGN KEY (Counterpartyid) REFERENCES Counterparty(Id),
+    FOREIGN KEY (Securityid) REFERENCES SECURITY(Id)
   );
   

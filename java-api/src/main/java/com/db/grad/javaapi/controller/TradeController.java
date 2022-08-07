@@ -34,7 +34,7 @@ public class TradeController {
 //    }
 
     @GetMapping("/trade/{id}")
-    public ResponseEntity <Trade> getEmployeeById(@PathVariable(value = "id") Long id)
+    public ResponseEntity <Trade> getEmployeeById(@PathVariable(value = "id") Integer id)
     throws ResourceNotFoundException {
        Trade trade = tradeRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Trade not found for this id:: " + id));

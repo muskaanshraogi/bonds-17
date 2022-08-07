@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table (name="User")
-public class UserD {
+public class User {
 
 	@Id
 	private int Id;
@@ -13,10 +13,10 @@ public class UserD {
 	private String Role;
 	private String Password;
 	
-	public UserD() {
+	public User() {
 		// TODO Auto-generated constructor stub
 	}
-	public UserD(int Id, String Name, String Email, String Role,String Password) {
+	public User(int Id, String Name, String Email, String Role,String Password) {
 		this.Id=Id;
 		this.Name=Name;
 		this.Email=Email;

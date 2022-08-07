@@ -3,37 +3,40 @@ import java.sql.Date;
 
 import javax.persistence.*;
 
+
+@Entity
+@Table(name="Trade")
 public class Trade {
 
 	@Id
 	private  int Id;
-	private int BookId;
-	private int CounterPartyId ;
-	private int SecurityId;
+	private int Bookid;
+	private int Counterpartyid ;
+	private int Securityid;
 	private int Quantity;
 	private	boolean Status;
 	private float Price;
-	private String  Buy_Sell;
-	private Date TradeDate;
-	private Date SettlementDate ;
+	private String  Buy_sell;
+	private Date Tradedate;
+	private Date Settlementdate ;
 	
 	public Trade() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Trade(int id, int bookId, int counterPartyId, int securityId, int quantity, boolean status, float price,
-			String buy_Sell, Date tradeDate, Date settlementDate) {
+	public Trade(int id, int Bookid, int Counterpartyid, int Securityid, int quantity, boolean status, float price,
+			String Buy_sell, Date Tradedate, Date Settlementdate) {
 		super();
 		Id = id;
-		BookId = bookId;
-		CounterPartyId = counterPartyId;
-		SecurityId = securityId;
+		this.Bookid = Bookid;
+		this.Counterpartyid = Counterpartyid;
+		this.Securityid = Securityid;
 		Quantity = quantity;
 		Status = status;
 		Price = price;
-		Buy_Sell = buy_Sell;
-		TradeDate = tradeDate;
-		SettlementDate = settlementDate;
+		this.Buy_sell = Buy_sell;
+		this.Tradedate = Tradedate;
+		this.Settlementdate = Settlementdate;
 	}
 	@Id
 	public void setId(int Id) {
@@ -43,30 +46,30 @@ public class Trade {
 		return this.Id;
 	}
 	
-	@Column(name="BookId")
-	public void setBookId(int BookId) {
-		this.BookId=BookId;
+	@Column(name="Bookid")
+	public void setBookid(int Bookid) {
+		this.Bookid=Bookid;
 	}
-	public int getBookId () {
-		return this.BookId;
-	}
-	
-	@Column (name="CounterPartyId")
-	public void setCounterPartyId( int  CounterPartyId ) {
-		this.CounterPartyId=CounterPartyId;
+	public int getBookid () {
+		return this.Bookid;
 	}
 	
-	public int getCounterPartyId() {
-		return this.CounterPartyId;
+	@Column (name="Counterpartyid")
+	public void setCounterpartyid( int  Counterpartyid ) {
+		this.Counterpartyid=Counterpartyid;
+	}
+	
+	public int getCounterpartyid() {
+		return this.Counterpartyid;
 	}
 
-	@Column (name="SecurityId")
-	public int getSecurityId() {
-		return SecurityId;
+	@Column (name="Securityid")
+	public int getSecurityid() {
+		return Securityid;
 	}
 
-	public void setSecurityId(int securityId) {
-		SecurityId = securityId;
+	public void setSecurityid(int Securityid) {
+		Securityid = Securityid;
 	}
 
 	public int getQuantity() {
@@ -93,28 +96,28 @@ public class Trade {
 		Price = price;
 	}
 
-	public String getBuy_Sell() {
-		return Buy_Sell;
+	public String getBuy_sell() {
+		return Buy_sell;
 	}
 
-	public void setBuy_Sell(String buy_Sell) {
-		Buy_Sell = buy_Sell;
+	public void setBuy_sell(String Buy_sell) {
+		this.Buy_sell = Buy_sell;
 	}
 
-	public Date getTradeDate() {
-		return TradeDate;
+	public Date getTradedate() {
+		return Tradedate;
 	}
 
-	public void setTradeDate(Date tradeDate) {
-		TradeDate = tradeDate;
+	public void setTradedate(Date Tradedate) {
+		this.Tradedate = Tradedate;
 	}
 
-	public Date getSettlementDate() {
-		return SettlementDate;
+	public Date getSettlementdate() {
+		return Settlementdate;
 	}
 
-	public void setSettlementDate(Date settlementDate) {
-		SettlementDate = settlementDate;
+	public void setSettlementdate(Date Settlementdate) {
+		this.Settlementdate = Settlementdate;
 	}
 	
 	
