@@ -69,7 +69,7 @@ public class Trade {
 	}
 
 	public void setSecurityid(int Securityid) {
-		Securityid = Securityid;
+		this.Securityid = Securityid;
 	}
 
 	public int getQuantity() {
