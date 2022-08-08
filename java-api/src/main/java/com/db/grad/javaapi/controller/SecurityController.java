@@ -22,7 +22,7 @@ import com.db.grad.javaapi.repository.SecurityRepository;
 
 
 @RestController
-@RequestMapping("/api/v2")
+@RequestMapping("/api/v1")
 public class SecurityController {
 	
 	@Autowired
@@ -34,7 +34,7 @@ public class SecurityController {
     }
     
     @GetMapping("/security/{id}")
-    public ResponseEntity < Security > getSecurityById(@PathVariable(value = "id") Long id)
+    public ResponseEntity < Security > getSecurityById(@PathVariable(value = "id") Integer id)
     throws ResourceNotFoundException {
         Security security = securityRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Security not found for this id :: " + id));
@@ -48,7 +48,7 @@ public class SecurityController {
     
     
     @DeleteMapping("/security/{id}")
-    public Map < String, Boolean > deleteSecurity(@PathVariable(value = "id") Long id)
+    public Map < String, Boolean > deleteSecurity(@PathVariable(value = "id") Integer id)
     throws Exception {
     	Security security = securityRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Security not found for this id :: " + id));

@@ -11,27 +11,27 @@ public class Security {
 	private String Isin;
 	private String Cusip;
 	private String Issuer;
-	private Date MaturityDate;
+	private Date Maturitydate;
 	private float Coupon ;
 	private String Type;
-	private float FaceValue;
+	private float Facevalue;
 	private boolean Status;
 	
 	public Security() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Security(int id, String isin, String cusip, String issuer, Date maturityDate, float coupon, String type,
-			float faceValue, boolean status) {
+	public Security(int id, String isin, String cusip, String issuer, Date Maturitydate, float coupon, String type,
+			float Facevalue, boolean status) {
 		super();
 		Id = id;
 		Isin = isin;
 		Cusip = cusip;
 		Issuer = issuer;
-		MaturityDate = maturityDate;
+		this.Maturitydate = Maturitydate;
 		Coupon = coupon;
 		Type = type;
-		FaceValue = faceValue;
+		this.Facevalue = Facevalue;
 		Status = status;
 	}
 
@@ -67,12 +67,12 @@ public class Security {
 		Issuer = issuer;
 	}
 
-	public Date getMaturityDate() {
-		return MaturityDate;
+	public Date getMaturitydate() {
+		return Maturitydate;
 	}
 
-	public void setMaturityDate(Date maturityDate) {
-		MaturityDate = maturityDate;
+	public void setMaturitydate(Date Maturitydate) {
+		this.Maturitydate = Maturitydate;
 	}
 
 	public float getCoupon() {
@@ -91,12 +91,12 @@ public class Security {
 		Type = type;
 	}
 
-	public float getFaceValue() {
-		return FaceValue;
+	public float getFacevalue() {
+		return Facevalue;
 	}
 
-	public void setFaceValue(float faceValue) {
-		FaceValue = faceValue;
+	public void setFacevalue(float Facevalue) {
+		this.Facevalue = Facevalue;
 	}
 
 	public boolean isStatus() {

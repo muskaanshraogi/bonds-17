@@ -17,13 +17,13 @@ Bookname VARCHAR(250) NOT NULL UNIQUE
  we can look after login testing 
 Drop table if EXISTS Login
 create table login (
-	username
+	Userdname
 
 );
 */
-DROP TABLE IF EXISTS USER;
+DROP TABLE IF EXISTS Userd;
 
-CREATE TABLE USER(
+CREATE TABLE Userd(
 Id INT PRIMARY KEY,
 NAME VARCHAR(100) NOT NULL ,
 Email VARCHAR(100) NOT NULL UNIQUE,
@@ -33,14 +33,14 @@ PASSWORD VARCHAR (100) NOT NULL
 );
  
 
- DROP TABLE IF EXISTS Bookuser;
+ DROP TABLE IF EXISTS BookUser;
   
-CREATE TABLE Bookuser (
+CREATE TABLE BookUser (
  
  Bookid INT,
  Userid INT,
  FOREIGN KEY (Bookid) REFERENCES Book(Id),
- FOREIGN KEY (Userid) REFERENCES USER(Id)
+ FOREIGN KEY (Userid) REFERENCES Userd(Id)
 );
 
   DROP TABLE IF EXISTS SECURITY;

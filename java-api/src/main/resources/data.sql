@@ -16,10 +16,10 @@ TRUNCATE TABLE counterparty;
 INSERT INTO Book (id, Bookname)
 VALUES (101,'Book1');
 
-INSERT INTO USER (id, NAME, Email, ROLE,PASSWORD)
+INSERT INTO Userd (id, NAME, Email, ROLE,PASSWORD)
 VALUES (201,'Ravi Jain', 'jainravi9915@gmail.com' , 'Analyst','password1');
 
-INSERT INTO USER (id, NAME, Email, ROLE,PASSWORD)
+INSERT INTO Userd (id, NAME, Email, ROLE,PASSWORD)
 VALUES (202,'Rajat Jain', 'jainravi@gmail.com' , 'Analyst','password1');
 
 INSERT INTO Bookuser (Bookid, Userid)

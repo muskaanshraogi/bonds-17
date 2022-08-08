@@ -3,8 +3,8 @@ import javax.persistence.*;
 
 
 @Entity
-@Table (name="User")
-public class User {
+@Table (name="Userd")
+public class Userd {
 
 	@Id
 	private int Id;
@@ -13,10 +13,10 @@ public class User {
 	private String Role;
 	private String Password;
 	
-	public User() {
+	public Userd() {
 		// TODO Auto-generated constructor stub
 	}
-	public User(int Id, String Name, String Email, String Role,String Password) {
+	public Userd(int Id, String Name, String Email, String Role,String Password) {
 		this.Id=Id;
 		this.Name=Name;
 		this.Email=Email;
@@ -24,7 +24,7 @@ public class User {
 		this.Password=Password;
 	}
 	
-	@Id
+
 	public void setId(int Id) {
 		this.Id=Id;
 	}
