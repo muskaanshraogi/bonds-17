@@ -113,4 +113,17 @@ public class SecurityController {
 	    }
 	    return ResponseEntity.ok().body(res);
     	}
+    
+    @PutMapping("/securitystatus/{id}")
+    public ResponseEntity < Security > updateSecurityStatus(@PathVariable(value = "id") Integer id) 
+    		throws ResourceNotFoundException {
+    	Security getSecurity = securityRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Security not found for this id :: " + id));
+
+    	getSecurity.setStatus(true);
+        final Security updatedSecurity = securityRepository.save(getSecurity);
+        return ResponseEntity.ok(updatedSecurity);
+    }
+    
+    
 }
