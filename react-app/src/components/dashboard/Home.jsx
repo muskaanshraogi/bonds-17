@@ -93,12 +93,12 @@ export default function Home() {
       history("/home/profile")
   }
 
-  // useEffect(() => {
-  //   let user = sessionStorage.getItem("usertoken");
-  //   if (!user) {
-  //     history("/");
-  //   }
-  // });
+  useEffect(() => {
+    let user = sessionStorage.getItem("usertoken");
+    if (!user) {
+      history("/");
+    }
+  });
 
   return (
     <div className={classes.root}>
@@ -109,11 +109,11 @@ export default function Home() {
           <Typography variant="h5" className={classes.title}>
             BONDS-17
           </Typography>
-          <IconButton onClick={handleProfile} style={{marginRight: "5px"}}>
+          {/* <IconButton onClick={handleProfile} style={{marginRight: "5px"}}>
             <Tooltip title="Profile">
               <IoPersonSharp style={{ height: "22px", color: "#ffffff" }} />
             </Tooltip>
-          </IconButton>
+          </IconButton> */}
           <IconButton onClick={handleLogout}>
             <Tooltip title="Logout">
               <ExitToApp style={{ height: "25px", color: "#ffffff" }} />

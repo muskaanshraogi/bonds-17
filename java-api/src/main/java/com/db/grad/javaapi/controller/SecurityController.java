@@ -114,6 +114,7 @@ public class SecurityController {
 	    return ResponseEntity.ok().body(res);
     	}
     
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/securitystatus/{id}")
     public ResponseEntity < Security > updateSecurityStatus(@PathVariable(value = "id") Integer id) 
     		throws ResourceNotFoundException {

@@ -3,14 +3,20 @@ import {
   makeStyles,
   Grid,
   Button,
-  Typography
+  Typography,
+  Divider
 } from "@material-ui/core";
 import { useNavigate, useLocation, useParams, Navigate } from "react-router-dom";
 import Axios from "axios";
-import Loader from "react-js-loader";
-import SecurityTable from './SecurityTable'
+import TradeTable from './TradeTable'
 import { hostNameUrl } from "../../config/api";
 import { BiArrowBack } from 'react-icons/bi'
+import { Table, Badge } from 'react-bootstrap'
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const useStyles = makeStyles((theme) => ({
   avatar2: {
@@ -73,6 +79,10 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '30px',
     paddingBottom: '3px',
     marginRight:'2px'
+  },
+  details: {
+    fontSize: '16px',
+    marginBottom: '3%'
   }
 }));
 
@@ -83,8 +93,13 @@ export default function Trades(props) {
 
     const {securityId} = useParams()
     const [security, setSecurity] = useState(null)
+    const [modal, setModal] = useState(false)
 
     useEffect(() => {
+        getSecurity()
+    }, [])
+
+    const getSecurity = () => {
         Axios.get(`${hostNameUrl}/security/${securityId}`, {
             headers: {
               "Content-Type": "application/json",
@@ -92,16 +107,25 @@ export default function Trades(props) {
             },
         })
         .then((res) => {
+            console.log(res.data)
             setSecurity(res.data)
         })
         .catch((err) => {
             // openSnackbar("Failed to retrieve answer");
             // setLoader(false)
         });
-    }, [])
+    }
 
-    useEffect(() => {
-        Axios.get(`${hostNameUrl}/securitytrade/${securityId}`, {
+    const handleClick = () => {
+        setModal(true)
+    }
+
+    const handleClose = () => {
+        setModal(false)
+    }
+
+    const handleUpdate = () => {
+        Axios.put(`${hostNameUrl}/securitystatus/${securityId}`, {
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${sessionStorage.getItem("usertoken")}`
@@ -109,27 +133,83 @@ export default function Trades(props) {
         })
         .then((res) => {
             console.log(res.data)
+            setModal(false)
+            getSecurity()
         })
         .catch((err) => {
             // openSnackbar("Failed to retrieve answer");
             // setLoader(false)
-            console.log(err)
         });
-    }, [])
+    }
 
   return (
     <div className={classes.root}>
       <Grid container>
         <Grid className={classes.paper}>
-            <Typography variant="h4" className={classes.text}>
-                <Button onClick={() => navigate(-1)}>
-                    <BiArrowBack className={classes.icon}/>
-                </Button>
-                Security: {security ? security.isin : null}
+            <div>
+                <Typography variant="h4" className={classes.text}>
+                    <Button onClick={() => navigate(-1)}>
+                        <BiArrowBack className={classes.icon}/>
+                    </Button>
+                    Security: {security ? security.isin : null}
+                </Typography>
+            </div>
+            {security ?
+            <Table borderless striped="columns" className={classes.details}>
+                <tbody>
+                    <tr>
+                        <td><b>ISIN</b></td>
+                        <td>{security.isin}</td>
+                        <td><b>CUSIP</b></td>
+                        <td>{security.cusip}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Issuer</b></td>
+                        <td>{security.issuer}</td>
+                        <td><b>Type</b></td>
+                        <td>{security.type}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Face Value</b></td>
+                        <td>{security.facevalue}</td>
+                        <td><b>Coupon</b></td>
+                        <td>{security.coupon}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Maturity Date</b></td>
+                        <td>{security.maturitydate}</td>
+                        <td><b>Status</b></td>
+                        <td>{security.status ? <Badge bg="success">OK</Badge> : <Badge bg="danger">CRITICAL</Badge>}</td>
+                    </tr>
+                </tbody>
+                </Table>:
+                null}
+
+            <Typography variant="h5" style={{color: "#6C63FF", fontWeight: 500}}>
+                TRADES
             </Typography>
-            <SecurityTable/>
+            <TradeTable/>
+            <div>
+                <Button disabled={!security || security.status} onClick={handleClick} variant="contained" color="primary" style={{float: "right", width: "12%"}}>Mark OK</Button>
+            </div>
         </Grid>
       </Grid>
+      <Dialog
+            open={modal}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+        >
+            <DialogTitle id="alert-dialog-title">
+            {"Are you sure you want to mark current security OK?"}
+            </DialogTitle>
+            <DialogActions>
+            <Button onClick={handleClose}>Disagree</Button>
+            <Button onClick={handleUpdate} autoFocus>
+                Agree
+            </Button>
+            </DialogActions>
+        </Dialog>
     </div>
   );
 }
