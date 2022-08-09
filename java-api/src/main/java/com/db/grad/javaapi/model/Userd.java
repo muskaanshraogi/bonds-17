@@ -6,9 +6,9 @@ import javax.persistence.*;
 @Table (name="Userd")
 public class Userd {
 
-	@Id
 	private int Id;
 	private String Name;
+	@Id
 	private String Email;
 	private String Role;
 	private String Password;
@@ -23,7 +23,11 @@ public class Userd {
 		this.Role=Role;
 		this.Password=Password;
 	}
-	
+	public Userd(String name, String email) {
+		
+		this.Name=name;
+		this.Email=email;
+	}
 
 	public void setId(int Id) {
 		this.Id=Id;

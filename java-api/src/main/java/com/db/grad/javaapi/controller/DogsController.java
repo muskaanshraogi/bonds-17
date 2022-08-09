@@ -23,6 +23,7 @@ import com.db.grad.javaapi.repository.DogsRepository;
 
 @RestController
 @RequestMapping("/api/v1")
+
 public class DogsController {
     @Autowired
     private DogsRepository dogsRepository;

@@ -24,9 +24,9 @@ create table login (
 DROP TABLE IF EXISTS Userd;
 
 CREATE TABLE Userd(
-Id INT PRIMARY KEY,
+Id INT unique,
 NAME VARCHAR(100) NOT NULL ,
-Email VARCHAR(100) NOT NULL UNIQUE,
+Email VARCHAR(100) primary key,
 ROLE VARCHAR(100) NOT NULL,
 -- we need to remove later
 PASSWORD VARCHAR (100) NOT NULL

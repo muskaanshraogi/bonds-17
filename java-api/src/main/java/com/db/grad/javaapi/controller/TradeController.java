@@ -55,4 +55,12 @@ public class TradeController {
 	              .orElseThrow(() -> new ResourceNotFoundException("Security not found for this id :: " + id));
 	          return ResponseEntity.ok().body(security);
     	}
+    
+
+    @PostMapping("/trade")
+    public Trade createTrade(@Valid @RequestBody Trade trade) {
+        return tradeRepository.saveAndFlush(trade);
+    }
+    
+    
 }
