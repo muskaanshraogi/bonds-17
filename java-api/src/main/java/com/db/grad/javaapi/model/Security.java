@@ -99,7 +99,7 @@ public class Security {
 		this.Facevalue = Facevalue;
 	}
 
-	public boolean isStatus() {
+	public boolean getStatus() {
 		return Status;
 	}
 
