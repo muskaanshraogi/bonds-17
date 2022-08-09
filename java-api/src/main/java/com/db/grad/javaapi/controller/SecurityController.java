@@ -1,5 +1,6 @@
 package com.db.grad.javaapi.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,5 +93,21 @@ public class SecurityController {
         final Security updatedSecurity = securityRepository.save(getSecurity);
         return ResponseEntity.ok(updatedSecurity);
     }
-	
+    
+    @GetMapping("/securitytrade/{id}")
+    public ResponseEntity<List<Trade>> getAllTradesBySecurity(@PathVariable(value = "id") Integer id)
+    	throws ResourceNotFoundException {
+    	List<Trade> allTrades = new ArrayList<Trade>();
+    	List<Trade> res= new ArrayList<Trade>();
+	    Security security = securityRepository.findById(id)
+		            .orElseThrow(() -> new ResourceNotFoundException("Security not found for this id:: " + id));
+	    allTrades = tradeRepository.findAll();
+	    	
+	    for(Trade t: allTrades) {
+	    	if(t.getSecurityid()==id) {
+	    		res.add(t);
+	    	}
+	    }
+	    return ResponseEntity.ok().body(res);
+    	}	
 }
