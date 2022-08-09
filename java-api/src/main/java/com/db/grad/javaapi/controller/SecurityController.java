@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.db.grad.javaapi.exception.ResourceNotFoundException;
+import com.db.grad.javaapi.model.Dogs;
 import com.db.grad.javaapi.model.Security;
 import com.db.grad.javaapi.model.Trade;
 import com.db.grad.javaapi.repository.SecurityRepository;
@@ -70,6 +72,25 @@ public class SecurityController {
         Map < String, Boolean > response = new HashMap <>();
         response.put("deleted", Boolean.TRUE);
         return response;
+    }
+    
+    @PutMapping("/security/{id}")
+    public ResponseEntity < Security > updateSecurity(@PathVariable(value = "id") Integer id,
+        @Valid @RequestBody Security securityDetails) throws ResourceNotFoundException {
+    	Security getSecurity = securityRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Security not found for this id :: " + id));
+
+    	getSecurity.setIsin(securityDetails.getIsin());
+    	getSecurity.setCusip(securityDetails.getCusip());
+    	getSecurity.setIssuer(securityDetails.getIssuer());
+    	getSecurity.setIsin(securityDetails.getIsin());
+    	getSecurity.setMaturitydate(securityDetails.getMaturitydate());
+    	getSecurity.setCoupon(securityDetails.getCoupon());
+    	getSecurity.setType(securityDetails.getType());
+    	getSecurity.setFacevalue(securityDetails.getFacevalue());
+    	getSecurity.setStatus(securityDetails.getStatus());
+        final Security updatedSecurity = securityRepository.save(getSecurity);
+        return ResponseEntity.ok(updatedSecurity);
     }
 	
 }
