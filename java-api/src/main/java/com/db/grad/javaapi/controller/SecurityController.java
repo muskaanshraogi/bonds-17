@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,13 +27,15 @@ import com.db.grad.javaapi.repository.SecurityRepository;
 
 import com.db.grad.javaapi.repository.TradeRepository;
 
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/v1")
 public class SecurityController {
 	
 	@Autowired
 	 private SecurityRepository securityRepository;
+
+     @Autowired
 	 private TradeRepository tradeRepository;
 
     @GetMapping("/security")
@@ -109,5 +112,5 @@ public class SecurityController {
 	    	}
 	    }
 	    return ResponseEntity.ok().body(res);
-    	}	
+    	}
 }
